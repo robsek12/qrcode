@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clipboard Copy</title>
-    <script>
-        // This function will copy the text to the clipboard
-        window.onload = function() {
-            const textToCopy = "This is the text to be copied!";
-            navigator.clipboard.writeText(textToCopy).then(function() {
-                alert('Text copied to clipboard!');
-            }).catch(function(error) {
-                console.error('Error copying text: ', error);
-            });
-        };
-    </script>
+  <meta charset="UTF-8">
+  <title>Paste from Clipboard</title>
+  <script>
+    async function pasteClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('output').innerText = "📋 Your clipboard: " + text;
+      } catch (err) {
+        alert("Failed to read clipboard: " + err);
+      }
+    }
+  </script>
 </head>
 <body>
-    <h1>Scan the QR code, and the text will be copied to your clipboard.</h1>
+  <h1>Click the button to paste your clipboard:</h1>
+  <button onclick="pasteClipboard()">📥 Paste Clipboard</button>
+  <p id="output" style="font-weight: bold; margin-top: 20px;"></p>
 </body>
 </html>
