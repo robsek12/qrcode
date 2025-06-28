@@ -2,21 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Paste from Clipboard</title>
-  <script>
-    async function pasteClipboard() {
-      try {
-        const text = await navigator.clipboard.readText();
-        document.getElementById('output').innerText = "📋 Your clipboard: " + text;
-      } catch (err) {
-        alert("Failed to read clipboard: " + err);
-      }
+  <title>Tap to Proceed</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
     }
-  </script>
+    button {
+      padding: 20px 40px;
+      font-size: 24px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-  <h1>Click the button to paste your clipboard:</h1>
-  <button onclick="pasteClipboard()">📥 Paste Clipboard</button>
-  <p id="output" style="font-weight: bold; margin-top: 20px;"></p>
+  <button onclick="alert('Tapped!')">Tap to Proceed</button>
 </body>
 </html>
