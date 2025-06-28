@@ -2,32 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Tap to Proceed</title>
+  <title>Paste Clipboard</title>
   <style>
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: #f0f0f0;
+      text-align: center;
     }
+
     button {
-      padding: 20px 40px;
-      font-size: 24px;
-      font-weight: bold;
-      background-color: #007bff;
+      padding: 16px 32px;
+      font-size: 22px;
+      background-color: #28a745;
       color: white;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
+      margin-bottom: 20px;
     }
+
     button:hover {
-      background-color: #0056b3;
+      background-color: #218838;
+    }
+
+    #output {
+      font-size: 18px;
+      color: #333;
+      background: white;
+      padding: 12px 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      max-width: 80%;
+      word-wrap: break-word;
     }
   </style>
 </head>
 <body>
-  <button onclick="alert('Tapped!')">Tap to Proceed</button>
+
+  <button onclick="pasteClipboard()">Tap to Proceed</button>
+  <div id="output">Clipboard content will appear here.</div>
+
+  <script>
+    async function pasteClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        document.getElementById('output').innerText = text || '📋 Clipboard is empty.';
+      } catch (err) {
+        document.getElementById('output').innerText = '❌ Failed to read clipboard: ' + err;
+      }
+    }
+  </script>
+
 </body>
 </html>
